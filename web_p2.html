@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol Stacks Explained</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #4a90e2;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        h2 {
+            color: #333;
+            border-bottom: 3px solid #4a90e2;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #4a90e2;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #e0f7fa;
+        }
+        .diagram-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .diagram-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+        .analogy {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #4a90e2;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .analogy ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .analogy li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .analogy li:before {
+            content: "📬";
+            position: absolute;
+            left: 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        footer a {
+            color: #4a90e2;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .back-to-top {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-to-top:hover {
+            background-color: #357abd;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛠️ Understanding Protocol Stacks</h1>
+            <!-- <div class="image-container">
+                <img src="https://i0.wp.com/iotgyaan.com/wp-content/uploads/2023/01/protocol-stack.jpg?resize=678%2C381&ssl=1" alt="Protocol Stack Diagram">
+                <!-- Replace the src above with your image URL, e.g., 'protocol_stack_diagram.png' or a link from Unsplash -->
+            <!-- </div> --> -->
+        </header>
+        
+        <section>
+            <p>A protocol stack is a collection (or layered set) of communication protocols that work together to enable data transmission between devices.</p>
+            <p>Each layer in the stack has a specific role, and they interact in a hierarchical way — the output of one layer becomes the input of the next. Think of it like a team where each member has a specific job.</p>
+            
+            <h2>🧩 In Simple Terms</h2>
+            <p>A protocol stack is a group of rules (protocols) organized in layers that help two devices communicate smoothly.</p>
+            
+            <h2>📶 Example — Bluetooth Protocol Stack</h2>
+            <!-- <div class="image-container">
+            <img src="https://i.ytimg.com/vi/eJKkEzeGuuo/maxresdefault.jpg">
+            </div> -->
+            <p>Here’s how it looks conceptually:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Layer</th>
+                        <th>Main Protocols</th>
+                        <th>Purpose / Function</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Application Layer</td>
+                        <td>A2DP, AVRCP, HFP, HID, etc.</td>
+                        <td>Defines how specific Bluetooth applications work (audio, control, data transfer).</td>
+                    </tr>
+                    <tr>
+                        <td>Middleware / Profile Layer</td>
+                        <td>SDP, OBEX, BNEP</td>
+                        <td>Handles service discovery, file transfer, and networking.</td>
+                    </tr>
+                    <tr>
+                        <td>Transport Layer</td>
+                        <td>RFCOMM, L2CAP</td>
+                        <td>Manages data flow and connection multiplexing.</td>
+                    </tr>
+                    <tr>
+                        <td>Control Layer</td>
+                        <td>HCI, LMP</td>
+                        <td>Controls link setup, authentication, and communication between hardware & software.</td>
+                    </tr>
+                    <tr>
+                        <td>Physical Layer</td>
+                        <td>Baseband, Radio</td>
+                        <td>Handles actual data transmission over 2.4 GHz wireless spectrum.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="diagram-container">
+                <h2>Visual Diagram</h2>
+                <svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Physical Layer -->
+                    <rect x="50" y="250" width="300" height="40" fill="#ff9999" stroke="#000" stroke-width="2"/>
+                    <text x="200" y="275" text-anchor="middle" font-size="14" fill="#000">Physical Layer (Baseband, Radio)</text>
+                    
+                    <!-- Control Layer -->
+                    <rect x="50" y="200" width="300" height="40" fill="#99ff99" stroke="#000" stroke-width="2"/>
+                    <text x="200" y="225" text-anchor="middle" font-size="14" fill="#000">Control Layer (HCI, LMP)</text>
+                    
+                    <!-- Transport Layer -->
+                    <rect x="50" y="150" width="300" height="40" fill="#9999ff" stroke="#000" stroke-width="2"/>
+                    <text x="200" y="175" text-anchor="middle" font-size="14" fill="#000">Transport Layer (RFCOMM, L2CAP)</text>
+                    
+                    <!-- Middleware Layer -->
+                    <rect x="50" y="100" width="300" height="40" fill="#ffff99" stroke="#000" stroke-width="2"/>
+                    <text x="200" y="125" text-anchor="middle" font-size="14" fill="#000">Middleware Layer (SDP, OBEX, BNEP)</text>
+                    
+                    <!-- Application Layer -->
+                    <rect x="50" y="50" width="300" height="40" fill="#ff99ff" stroke="#000" stroke-width="2"/>
+                    <text x="200" y="75" text-anchor="middle" font-size="14" fill="#000">Application Layer (A2DP, AVRCP, etc.)</text>
+                    
+                    <!-- Arrows indicating flow -->
+                    <polygon points="200,90 190,100 210,100" fill="#000"/>
+                    <polygon points="200,140 190,150 210,150" fill="#000"/>
+                    <polygon points="200,190 190,200 210,200" fill="#000"/>
+                    <polygon points="200,240 190,250 210,250" fill="#000"/>
+                </svg>
+            </div>
+            
+            <h2>📬 Analogy</h2>
+            <div class="analogy">
+                <p>Imagine sending a letter:</p>
+                <ul>
+                    <li><strong>Application Layer</strong> — You write the message.</li>
+                    <li><strong>Transport Layer</strong> — You put it in an envelope.</li>
+                    <li><strong>Control Layer</strong> — The post office ensures it reaches the right city.</li>
+                    <li><strong>Physical Layer</strong> — The delivery truck physically carries it.</li>
+                </ul>
+                <p>Each layer doesn’t worry about how the others do their job — it just performs its own part.</p>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2023 Borkar Ganesh.</p>
+            <p>Follow us: <a href="#">Twitter</a> | <a href="#">LinkedIn</a> | <a href="#">GitHub</a></p>
+            <a href="#top" class="back-to-top">Back to Top</a>
+        </footer>
+    </div>
+</body>
+</html>
